@@ -1,6 +1,11 @@
 """
 Mask R-CNN
 Train on the toy Balloon dataset and implement color splash effect.
+
+Copyright (c) 2018 Matterport, Inc.
+Licensed under the MIT License (see LICENSE for details)
+Written by Waleed Abdulla
+
 ------------------------------------------------------------
 
 Usage: import the module (see Jupyter notebooks for examples), or run from
@@ -33,7 +38,7 @@ from mrcnn.visualize import display_instances
 import matplotlib.pyplot as plt
 
 # Root directory of the project
-ROOT_DIR = 'C:/Users/Sourish/Mask_RCNN/'
+ROOT_DIR = '/Users/mac-10/Desktop/detector'
 
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
@@ -53,7 +58,7 @@ DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
 
 
 class CustomConfig(Config):
-    """Configuration for training on the  dataset.
+    """Configuration for training on the toy  dataset.
     Derives from the base Config class and overrides some values.
     """
     # Give the configuration a recognizable name
@@ -89,7 +94,7 @@ class CustomDataset(utils.Dataset):
 
         # Train or validation dataset?
         assert subset in ["train", "val"]
-        dataset_dir = os.path.join(dataset_dir + subset)
+        dataset_dir = os.path.join(dataset_dir + '/' + subset)
 
         # Load annotations
         # VGG Image Annotator saves each image in the form:
@@ -264,7 +269,7 @@ def detect_and_color_splash(model, image_path=None, video_path=None):
                 vwriter.write(splash)
                 count += 1
         vwriter.release()
-    #print("Saved to ", file_name)
+    print("Saved to ", file_name)
 
 ############################################################
 #  Training
